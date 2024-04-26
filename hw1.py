@@ -24,6 +24,7 @@ class Service():
         Створити нову заявку
         Додати заявку до черги
         """
+        print(Fore.YELLOW)
         progres = tqdm(range(count))
         for _ in progres:
             request = Requests()
@@ -40,13 +41,13 @@ class Service():
             Вивести повідомлення, що черга пуста
 
         """
+        print(Fore.GREEN)
         progres = tqdm(range(count))
         for _ in progres:
             if self.requests.empty():
                 raise ServiceRequestsNotFound
             cur_request = self.requests.get()
             progres.set_description(f"Processing.. {cur_request.title}")
-            count += -1
             time.sleep(self.delay)
 
 
@@ -58,7 +59,7 @@ def main():
     """
     # Створити чергу заявок
     requests = Service(0.5)
-    requests.generate_request(11)
+    requests.generate_request(9)
     requests.process_request(10)
 
 while True:
@@ -68,5 +69,5 @@ while True:
         print(Fore.GREEN + "OK...Bye!")
         break
     except ServiceRequestsNotFound:
-        print(Fore.YELLOW + "Warning...request not found!")
+        print(Fore.RED + "Warning...request not found!")
         print(Style.RESET_ALL)
