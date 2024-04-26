@@ -3,7 +3,7 @@ from queue import Queue
 import random
 import time
 from tqdm import tqdm
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 
 class ServiceRequestsNotFound(Exception):
     """Exception for request queue"""
